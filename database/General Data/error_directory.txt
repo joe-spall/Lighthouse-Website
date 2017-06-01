@@ -1,0 +1,7 @@
+Error Code Directory
+1000 -> No current latitude supplied in the request
+1001 -> No current longitude supplied in the request
+1002 -> No radius supplied in the request
+1003 -> No earliest year supplied in the request
+1004 -> SQL connection error
+1005 -> Data not available for the location

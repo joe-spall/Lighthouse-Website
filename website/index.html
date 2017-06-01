@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Lighthouse</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="vendor/device-mockups/device-mockups.min.css">
+
+    <!-- Theme CSS -->
+    <link href="css/new-age.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<style>
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 400px;
+        text-align: center;
+        width: 80%;
+        margin: 0 auto 0 auto;
+      }
+      
+      #firstHeading{
+        color: #777777;
+      }
+      #mapText{
+        color: #888888;
+        
+      }
+      
+      @font-face
+      {
+        font-family: BEBAS;
+        src: url('font/BEBAS.ttf'),
+        url('font/BEBAS.ttf');
+      }
+      
+      
+      h1
+      {
+        font-family: 'BEBAS', Times, serif; 
+      }
+      
+      h2
+      {
+        font-family: 'BEBAS', Times, serif; 
+      }
+      
+      h3
+      {
+        font-family: 'BEBAS', Times, serif; 
+      }
+      
+     
+      
+      
+</style>
+      
+</head>
+
+<body id="page-top">
+
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Lighthouse</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" href="#download">Download</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#features">Features</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#creators">Creators</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="header-content">
+                        <div class="header-content-inner">
+                            <h1>Lighthouse.<br/>Get around safer.</h1>
+                            <a href="#download" class="btn btn-outline btn-xl page-scroll">Start Now for Free!</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="device-container">
+                        <div class="device-mockup iphone6 portrait white">
+                            <div class="device">
+                                <div class="screen">
+                                    <img alt="screen" src="img/LighthouseLogo.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section id="features" class="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-heading">
+                        <h2>what does Lighthouse do?</h2>
+                        <p class="text-muted"></p>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="device-container">
+                        <div class="device-mockup iphone6 portrait white">
+                            <div class="device">
+                                <div class="screen">
+                                    <img src="img/SampleGrid.png" class="img-responsive" alt=""> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="container-fluid">
+                        <div class="row">                           
+                            <div class="col-md-6">
+                                <div class="feature-item">
+                                    <i class="icon-list text-primary"></i>
+                                    <h3>Crime Database</h3>
+                                    <p>We access the local police data from all over the United States, creating a collection relevant to users.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="feature-item">
+                                    <i class="icon-location-pin text-primary"></i>
+                                    <h3>Data Presentation</h3>
+                                    <p>The user is presented with markers on a map, featuring the information from the aggregated crime data. This includes the date and type of crime.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">   
+                            <div class="col-md-6">
+                                <div class="feature-item">
+                                    <i class="icon-directions text-primary"></i>
+                                    <h3>Danger Assessment</h3>
+                                    <p>Using available data and in-house algorithms, a risk to enter certain areas can be assessed. Users will be notified when an unsafe area is entered.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="feature-item">
+                                    <i class="icon-compass text-primary"></i>
+                                    <h3>Walking Routes <br>(coming soon)</h3>
+                                    <p>Given origin and destination information, a walking route based on danger versus effeciency will be given. The priority on danger or speed will be adjustable.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="download" class="download bg-primary text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2 class="section-heading">Currently available in the following areas!</h2>
+                     <div id="map"></div>
+                         <script>
+                        function initMap() {
+                                var midpoint = {lat: 39.5000, lng: -98.3500};
+                                var atlanta = {lat: 33.7729, lng: -84.3906};  
+                                var newyork = {lat: 40.6844, lng: -73.9910};
+                                var chicago = {lat:41.8379, lng:-87.6849};
+                                
+                                var map = new google.maps.Map(document.getElementById('map'), {
+                                        zoom: 3,
+                                        center: midpoint
+                                });
+                               
+                                document.getElementById('map').style.boxShadow="5px 5px 5px #888888";
+                                
+                                
+                                var atlContentString = '<div id="content">'+
+                                        '<div id="siteNotice">'+
+                                        '</div>'+
+                                        '<h1 id="firstHeading" class="firstHeading">Atlanta</h1>'+
+                                        '<div id="bodyContent">'+
+                                        '<p id="mapText">Data Entries: 82,500</p>'+
+                                        '<p id="mapText">Date Ranges: January 2014 - September 2016</p>'+
+                                        '</div>'+
+                                        '</div>';
+                            
+                                var atlWindow = new google.maps.InfoWindow({
+                                        content: atlContentString
+                                });
+                            
+                                var atlMarker = new google.maps.Marker({
+                                        position: atlanta,
+                                        map: map,
+                                        title: 'Atlanta'
+                                });
+                                
+                                atlMarker.addListener('click', function() {
+                                        atlWindow.open(map, atlMarker);
+                                });
+                                
+                                var nycContentString = '<div id="content">'+
+                                        '<div id="siteNotice">'+
+                                        '</div>'+
+                                        '<h1 id="firstHeading" class="firstHeading">New York City</h1>'+
+                                        '<div id="bodyContent">'+
+                                        '<p id="mapText">Data Entries: 417,600</p>'+
+                                        '<p id="mapText">Date Ranges: July 1946 - September 2016</p>'+
+                                        '</div>'+
+                                        '</div>';
+                            
+                                var nycWindow = new google.maps.InfoWindow({
+                                        content: nycContentString
+                                });
+                            
+                                var nycMarker = new google.maps.Marker({
+                                        position: newyork,
+                                        map: map,
+                                        title: 'New York City'
+                                });
+                                
+                                nycMarker.addListener('click', function() {
+                                        nycWindow.open(map, nycMarker);
+                                });
+                                
+                                var chiContentString = '<div id="content">'+
+                                        '<div id="siteNotice">'+
+                                        '</div>'+
+                                        '<h1 id="firstHeading" class="firstHeading">Chicago</h1>'+
+                                        '<div id="bodyContent">'+
+                                        '<p id="mapText">Data Entries: 858,000</p>'+
+                                        '<p id="mapText">Date Ranges: January 2014 - May 2017</p>'+
+                                        '</div>'+
+                                        '</div>';
+                            
+                                var chiWindow = new google.maps.InfoWindow({
+                                        content: chiContentString
+                                });
+                            
+                                var chiMarker = new google.maps.Marker({
+                                        position: chicago,
+                                        map: map,
+                                        title: 'Chicago'
+                                });
+                                
+                                chiMarker.addListener('click', function() {
+                                        chiWindow.open(map, chiMarker);
+                                });
+                                
+                                
+                            }
+                            
+                           
+                        </script>
+                    <p>Our app will soon be available on the Apple App Store!</p>
+                    <div class="badges">
+                        <a class="badge-link" href="#"><img src="img/app-store-badge.svg" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    
+    <section id="contact" class="contact bg-primary">
+        <div class="container">
+            <h2>Follow us on Twitter or Facebook!</h2>
+            <ul class="list-inline list-social">
+                <li class="social-twitter">
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li class="social-facebook">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                </li>
+            </ul>
+        </div>
+    </section>
+        
+    <section id="creators" class="creators bg-primary text-center">
+        <div class="container">
+            <h3>Meet the Creators</h3>
+            <ul class="list-inline">
+                <li id="joe">
+                    <a href="https://www.linkedin.com/in/joseph-spall-iv"><img src="img/joe.jpg" class="img-circle" alt=""></a>
+                    <h3>Joseph "Joe" Spall IV</h3>
+                    <h4>Developer</h4>
+                </li>
+                <li id="mikey">
+                    <img src="img/Mikey_Face.jpg" class="img-circle" alt="">
+                    <h3>Michael Aki</h3>
+                    <h4>Developer</h4>
+                </li>
+                <li id="q">
+                    <a href="http://www.linkedin.com/in/darcywroperv"><img src="img/q.jpg" class="img-circle" alt=""></a>
+                    <h3>D'Arcy "Quintin" Roper V</h3>
+                    <h4>Developer</h4>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2017 Lighthouse. All Rights Reserved.</p>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/new-age.min.js"></script>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg0ZW4o8Za22Yw69zF1bSRdquvIZtWnuQ&callback=initMap">
+    </script>
+
+</body>
+
+</html>
