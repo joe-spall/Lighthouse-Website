@@ -3,23 +3,23 @@
 $error = null;
 
 class Crime{
-	public $date;
-	public $typeCrime;
-	public $lat;
-	public $long;
+	var $date;
+	var $typeCrime;
+	var $lat;
+	var $long;
 	
 	function __construct($crimeDate, $crimeType, $crimeLat, $crimeLong)
 	{
-		$this->$date = $crimeDate;
-		$this->$typeCrime = $crimeType;
-		$this->$lat = $crimeLat;
-		$this->$long = $crimeLong;
+		$this->date = $crimeDate;
+		$this->typeCrime = $crimeType;
+		$this->lat = $crimeLat;
+		$this->long = $crimeLong;
 		
 	}
 	
 }
 
-function findCity($minLat, $maxLat, $minong, $maxLong)
+function findCity($minLat, $maxLat, $minLong, $maxLong)
 {
 	$ranges = array('atl' => array(33.6,33.9,-84.6,-84.3), 'nyc' => array(40.5,40.92,-74.26,-73.68), 'chi' => array(36.6,42.1,-91.7,-87.53));
 	$cityValue = null;
