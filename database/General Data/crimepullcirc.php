@@ -3,13 +3,15 @@
 $error = null;
 
 class Crime{
+	var $id;
 	var $date;
 	var $typeCrime;
 	var $lat;
 	var $long;
 	
-	function __construct($crimeDate, $crimeType, $crimeLat, $crimeLong)
+	function __construct($crimeId, $crimeDate, $crimeType, $crimeLat, $crimeLong)
 	{
+		$this->id = $crimeId;
 		$this->date = $crimeDate;
 		$this->typeCrime = $crimeType;
 		$this->lat = $crimeLat;
@@ -112,7 +114,7 @@ if(is_null($error))
 				// output data of each row
 				while($row = $result->fetch_assoc())
 				{
-					$oneCrime = new Crime($row["date"], $row["crime"], $row["latitude"], $row["longitude"]);
+					$oneCrime = new Crime($row["id"], $row["date"], $row["crime"], $row["latitude"], $row["longitude"]);
 					$returnHolder[] = $oneCrime;
 				}
 			}
