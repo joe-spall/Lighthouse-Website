@@ -101,27 +101,30 @@ if(is_null($error))
 		
 		$city = findCity($minLat, $maxLat, $minLong, $maxLong);
 		
-		$returnHolder[] = null;
+		$returnHolder = array();
 		
 		if(!is_null($city))
 		{
 			$sql = "SELECT * FROM ".$city."Data WHERE latitude BETWEEN ".$minLat." AND ".$maxLat." AND longitude BETWEEN ".$minLong." AND ".$maxLong." AND date >= ".$year;
-			$result = $conn->query($sql);
-			$numResults = $result->num_rows;
-			$returnHolder = array('result_num' => $numResults);
+			$resultFromPull = $conn->query($sql);
+			$numResults = $resultFromPull->num_rows;
+			$returnHolder["result_num"] = $numResults;
+			$results = [];
+
 			if ($numResults > 0)
 			{
 				// output data of each row
-				while($row = $result->fetch_assoc())
+				while($row = $resultFromPull->fetch_assoc())
 				{
-					$oneCrime = new Crime($row["id"], $row["date"], $row["crime"], $row["latitude"], $row["longitude"]);
-					$returnHolder[] = $oneCrime;
+					$oneCrime = new Crime($row["id"], $row["date"], $row["crime"], floatval($row["latitude"]), floatval($row["longitude"]));
+					$results[] = $oneCrime;
 				}
 			}
+			$returnHolder["results"] = $results; 
 		}
 		else
 		{
-			$returnHolder = array('error' => '1005');
+			$returnHolder = array("error" => "1005");
 		}
 		
 		echo json_encode($returnHolder);
