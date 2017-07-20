@@ -48,7 +48,7 @@ function test_input($data) {
 
 if (isset($_POST["curlatitude"]))
 {
-  $curlatitude = test_input($_POST["curlatitude"]);
+  $curlatitude = floatval(test_input($_POST["curlatitude"]));
 } 
 else 
 {
@@ -57,7 +57,7 @@ else
 
 if (isset($_POST["curlongitude"]))
 {
-  $curlongitude = test_input($_POST["curlongitude"]);
+  $curlongitude = floatval(test_input($_POST["curlongitude"]));
 } 
 else 
 {
@@ -66,7 +66,7 @@ else
 
 if (isset($_POST["radius"]))
 {
-  $radius = test_input($_POST["radius"]);
+  $radius = floatval(test_input($_POST["radius"]));
 } 
 else 
 {
@@ -94,10 +94,10 @@ if(is_null($error))
 	}
 	else
 	{
-		$minLat = floatval($curlatitude) - floatval($radius);
-		$maxLat = floatval($curlatitude) + floatval($radius);
-		$minLong = floatval($curlongitude) - floatval($radius);
-		$maxLong = floatval($curlongitude) + floatval($radius);
+		$minLat = $curlatitude - $radius;
+		$maxLat = $curlatitude + $radius;
+		$minLong = $curlongitude - $radius;
+		$maxLong = $curlongitude + $radius;
 		
 		$city = findCity($minLat, $maxLat, $minLong, $maxLong);
 		
@@ -116,8 +116,16 @@ if(is_null($error))
 				// output data of each row
 				while($row = $resultFromPull->fetch_assoc())
 				{
-					$oneCrime = new Crime($row["id"], $row["date"], $row["crime"], floatval($row["latitude"]), floatval($row["longitude"]));
-					$results[] = $oneCrime;
+					$thisLat = floatval($row["latitude"]);
+					$latDist = $thisLat-$curlatitude;
+					$thisLong = floatval($row["longitude"]);
+					$longDist = $thisLong-$curlongitude;
+					$thisRadius = floatval(sqrt(pow($latDist,2) + pow($longDist,2)));
+					if($thisRadius <= $radius){
+						$oneCrime = new Crime($row["id"], $row["date"], $row["crime"],$thisLat,$thisLong);
+						$results[] = $oneCrime;
+					}
+					
 				}
 			}
 			$returnHolder["results"] = $results; 
