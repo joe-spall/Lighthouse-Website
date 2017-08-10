@@ -105,7 +105,7 @@ if(is_null($error))
 		
 		if(!is_null($city))
 		{
-			$sql = "SELECT * FROM ".$city."Data WHERE latitude BETWEEN ".$minLat." AND ".$maxLat." AND longitude BETWEEN ".$minLong." AND ".$maxLong." AND date >= ".$year;
+			$sql = "SELECT * FROM ".$city."Data WHERE latitude BETWEEN ".$minLat." AND ".$maxLat." AND longitude BETWEEN ".$minLong." AND ".$maxLong." AND date >= '".$year. "'";
 			$resultFromPull = $conn->query($sql);
 			$numResults = $resultFromPull->num_rows;
 			$returnHolder["result_num"] = $numResults;
