@@ -108,7 +108,6 @@ if(is_null($error))
 			$sql = "SELECT * FROM ".$city."Data WHERE latitude BETWEEN ".$minLat." AND ".$maxLat." AND longitude BETWEEN ".$minLong." AND ".$maxLong." AND date >= '".$year. "'";
 			$resultFromPull = $conn->query($sql);
 			$numResults = $resultFromPull->num_rows;
-			$returnHolder["result_num"] = $numResults;
 			$results = [];
 
 			if ($numResults > 0)
@@ -128,6 +127,7 @@ if(is_null($error))
 					
 				}
 			}
+			$returnHolder["result_num"] = count($results);
 			$returnHolder["results"] = $results; 
 		}
 		else
