@@ -191,6 +191,8 @@
                                 var atlanta = {lat: 33.7729, lng: -84.3906};  
                                 var newyork = {lat: 40.6844, lng: -73.9910};
                                 var chicago = {lat:41.8379, lng:-87.6849};
+                                var philadelphia = {lat:39.9526, lng:-75.1652};
+                                var losangeles = {lat:34.0522, lng:-118.2437};
                                 
                                 var map = new google.maps.Map(document.getElementById('map'), {
                                         zoom: 3,
@@ -205,8 +207,8 @@
                                         '</div>'+
                                         '<h1 id="firstHeading" class="firstHeading">Atlanta</h1>'+
                                         '<div id="bodyContent">'+
-                                        '<p id="mapText">Data Entries: 82,500</p>'+
-                                        '<p id="mapText">Date Ranges: January 2014 - September 2016</p>'+
+                                        '<p id="mapText">Data Entries: 242,045</p>'+
+                                        '<p id="mapText">Date Ranges: January 2008 - August 2017</p>'+
                                         '</div>'+
                                         '</div>';
                             
@@ -272,7 +274,53 @@
                                         chiWindow.open(map, chiMarker);
                                 });
                                 
+                                var phiContentString = '<div id="content">'+
+                                        '<div id="siteNotice">'+
+                                        '</div>'+
+                                        '<h1 id="firstHeading" class="firstHeading">Philadelphia</h1>'+
+                                        '<div id="bodyContent">'+
+                                        '<p id="mapText">Data Entries: ?</p>'+
+                                        '<p id="mapText">Date Ranges: ? - August 2017</p>'+
+                                        '</div>'+
+                                        '</div>';
+                            
+                                var phiWindow = new google.maps.InfoWindow({
+                                        content: phiContentString
+                                });
+                            
+                                var phiMarker = new google.maps.Marker({
+                                        position: philadelphia,
+                                        map: map,
+                                        title: 'Philadelphia'
+                                });
                                 
+                                phiMarker.addListener('click', function() {
+                                        phiWindow.open(map, phiMarker);
+                                });
+                            
+                                var laContentString = '<div id="content">'+
+                                        '<div id="siteNotice">'+
+                                        '</div>'+
+                                        '<h1 id="firstHeading" class="firstHeading">Los Angeles</h1>'+
+                                        '<div id="bodyContent">'+
+                                        '<p id="mapText">Data Entries: ?</p>'+
+                                        '<p id="mapText">Date Ranges: ? - December 2015</p>'+
+                                        '</div>'+
+                                        '</div>';
+                            
+                                var laWindow = new google.maps.InfoWindow({
+                                        content: laContentString
+                                });
+                            
+                                var laMarker = new google.maps.Marker({
+                                        position: losangeles,
+                                        map: map,
+                                        title: 'Los Angeles'
+                                });
+                                
+                                laMarker.addListener('click', function() {
+                                        laWindow.open(map, laMarker);
+                                });
                             }
                             
                            
