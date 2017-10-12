@@ -242,6 +242,36 @@
 	top: 42%; bottom: 42%; left:  86.4%; right: 5.1%;
 }
 
+/* Nexus 6 */
+.device-mockup[data-device="nexus_6"],
+.device-mockup[data-device="nexus_6"][data-orientation="portrait"] {
+	padding-bottom: 207.19%;
+}
+
+.device-mockup[data-device="nexus_6"][data-orientation="landscape"] {
+	padding-bottom: 48.76%;
+}
+
+.device-mockup[data-device="nexus_6"] > .device,
+.device-mockup[data-device="nexus_6"] > .device,
+.device-mockup[data-device="nexus_6"][data-orientation="portrait"] > .device {
+	background-image: url("nexus_6/nexus_6_port.png");
+}
+
+.device-mockup[data-device="nexus_6"][data-orientation="landscape"] > .device,
+.device-mockup[data-device="nexus_6"][data-orientation="landscape"] > .device {
+	background-image: url("nexus_6/nexus_6_land.png");
+}
+
+.device-mockup[data-device="nexus_6"] > .device > .screen,
+.device-mockup[data-device="nexus_6"][data-orientation="portrait"] > .device > .screen {
+	top: 12.58%; bottom: 12.88%; left: 6.77%; right: 6.77%;
+}
+
+.device-mockup[data-device="nexus_6"][data-orientation="landscape"] > .device > .screen {
+	top: 6.77%; bottom: 6.77%; left: 12.58%; right: 12.88%;
+}
+
 /* iPhone 6 */
 .device-mockup[data-device="iphone6"],
 .device-mockup[data-device="iphone6"][data-orientation="portrait"] {
