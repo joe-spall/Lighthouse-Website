@@ -1,11 +1,41 @@
 <?php
 
+$error = null;
+
 class Crime{
-	public $date = "";
-	public $typeCrime = "";
-	public $lat = "";
-	public $long = "";
-	
+  var $id;
+  var $date;
+  var $typeCrime;
+  var $lat;
+  var $long;
+  
+  function __construct($crimeId, $crimeDate, $crimeType, $crimeLat, $crimeLong)
+  {
+    $this->id = $crimeId;
+    $this->date = $crimeDate;
+    $this->typeCrime = $crimeType;
+    $this->lat = $crimeLat;
+    $this->long = $crimeLong;
+    
+  }
+  
+}
+
+function findCity($minLat, $maxLat, $minLong, $maxLong)
+{
+  $ranges = array('atl' => array(33.6,33.9,-84.6,-84.3), 'nyc' => array(40.5,40.92,-74.26,-73.68), 'chi' => array(36.6,42.1,-91.7,-87.53));
+  $cityValue = null;
+  
+  foreach($ranges as $city => $cityData)
+  {
+    if((($minLat >= $ranges[$city][0] && $minLat <= $ranges[$city][1]) || ($maxLat >= $ranges[$city][0] && $maxLat <= $ranges[$city][1])) && (($minLong >= $ranges[$city][2] && $minLong <= $ranges[$city][3]) || ($maxLong >= $ranges[$city][2] && $maxLong <= $ranges[$city][3])))
+    {
+      $cityValue = $city;
+      break;
+    }
+  }
+  
+  return $cityValue;
 }
 
 function test_input($data) {
@@ -15,133 +45,110 @@ function test_input($data) {
   return $data;
 }
 
-if (isset($_POST["servername"]))
+
+if (isset($_POST["aLat"]))
 {
-  $servername = test_input($_POST["servername"]);
+  $aLat = floatval(test_input($_POST["aLat"]));
 } 
 else 
 {
-  $servername = null;
-  echo "no servername supplied";
+  $error = '1000';
 }
 
-if (isset($_POST["username"]))
+if (isset($_POST["aLng"]))
 {
-  $username = test_input($_POST["username"]);
+  $aLng = floatval(test_input($_POST["aLng"]));
 } 
 else 
 {
-  $username = null;
-  echo "no username supplied";
+  $error = '1001';
 }
 
-if (isset($_POST["password"]))
+if (isset($_POST["bLat"]))
 {
-  $password = test_input($_POST["password"]);
+  $bLat = floatval(test_input($_POST["bLat"]));
 } 
 else 
 {
-  $password = null;
-  echo "no password supplied";
+  $error = '1007';
 }
 
-if (isset($_POST["dbname"]))
+if (isset($_POST["bLng"]))
 {
-  $dbname = test_input($_POST["dbname"]);
+  $bLng = floatval(test_input($_POST["bLng"]));
 } 
 else 
 {
-  $dbname = null;
-  echo "no dbname supplied";
+  $error = '1008';
 }
 
-if (isset($_POST["alatitude"]))
+
+if (isset($_POST["year"]))
 {
-  $alatitude = test_input($_POST["alatitude"]);
+  $year = test_input($_POST["year"]);
 } 
 else 
 {
-  $alatitude = null;
-  echo "no a latitude supplied";
+  $error = '1003';
 }
-
-if (isset($_POST["alongitude"]))
-{
-  $alongitude = test_input($_POST["alongitude"]);
-} 
-else 
-{
-  $alongitude = null;
-  echo "no a longitude supplied";
-}
-
-if (isset($_POST["blatitude"]))
-{
-  $blatitude = test_input($_POST["blatitude"]);
-} 
-else 
-{
-  $blatitude = null;
-  echo "no b latitude supplied";
-}
-
-if (isset($_POST["blongitude"]))
-{
-  $blongitude = test_input($_POST["blongitude"]);
-} 
-else 
-{
-  $blongitude = null;
-  echo "no b longitude supplied";
-}
-
-if (isset($_POST["city"]))
-{
-  $city = test_input($_POST["city"]);
-} 
-else 
-{
-  $city = null;
-  echo "no city supplied";
-}
-
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
+if(is_null($error))
+{
+  $conn = new mysqli("localhost", "applight_LHUser", "mikelikesbirds1!", "applight_lighthouse");
+  // Check connection
+  if ($conn->connect_error)
+  {
+    echo json_encode(array('error' => '1004 '.$conn->connect_error));
+    $conn->close();
+  }
+  else
+  {
+    $minLat = min($aLat,$bLat);
+    $maxLat = max($aLat,$bLat);
+    $minLong = min($aLng,$bLng);
+    $maxLong = max($aLng,$bLng);
+    
+    $city = findCity($minLat, $maxLat, $minLong, $maxLong);
+    
+    $returnHolder = array();
+    
+    if(!is_null($city))
+    {
+      $sql = "SELECT * FROM ".$city."Data WHERE latitude BETWEEN ".$minLat." AND ".$maxLat." AND longitude BETWEEN ".$minLong." AND ".$maxLong." AND date >= '".$year. "'";
+      $resultFromPull = $conn->query($sql);
+      $numResults = $resultFromPull->num_rows;
+      $results = [];
+
+      if ($numResults > 0)
+      {
+        // output data of each row
+        while($row = $resultFromPull->fetch_assoc())
+        {
+          $thisLat = floatval($row["latitude"]);
+          $thisLong = floatval($row["longitude"]);
+          
+          $oneCrime = new Crime($row["id"], $row["date"], $row["crime"],$thisLat,$thisLong);
+          $results[] = $oneCrime;
+          
+          
+        }
+      }
+      $returnHolder["result_num"] = count($results);
+      $returnHolder["results"] = $results; 
+    }
+    else
+    {
+      $returnHolder = array("error" => "1005");
+    }
+    
+    echo json_encode($returnHolder);
+    $conn->close();
+  }
+}
+else
+{
+  echo json_encode(array('error' => $error));
 }
 
-$alatitude = floatval($alatitude);
-$alongitude = floatval($alongitude);
-$blatitude = floatval($blatitude);
-$blongitude = floatval($blongitude);
-$minLat = min($alatitude,$blatitude);
-$maxLat = max($alatitude, $blatitude);
-$minLong = min($alongitude, $blongitude);
-$maxLong = max($alongitude, $blongitude);
-
-$sql = "SELECT * FROM ".$city."Data WHERE latitude ".$minLat." AND ".$maxLat." AND longitude ".$minLong." AND ".$maxLong;
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-	// output data of each row
-	$returnHolder = [];
-	while($row = $result->fetch_assoc()) {
-
-		$oneCrime = new Crime();
-		$oneCrime->date = $row["date"];
-		$oneCrime->typeCrime = $row["crime"];
-		$oneCrime->lat = $row["latitude"];
-		$oneCrime->long = $row["longitude"];
-		$returnHolder[] = $oneCrime;
-		
-		
-	}
-	echo json_encode($returnHolder);
-} else {
-	echo "0 results";
-}
-
-$conn->close();
 ?>
