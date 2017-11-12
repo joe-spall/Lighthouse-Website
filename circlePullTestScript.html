@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<script>
+function search() {
+    let latInput = document.getElementById("lat").value;
+    let lngInput = document.getElementById("lng").value;
+    let radiusInput = document.getElementById("radius").value;
+    let yearInput = document.getElementById("year").value;
+
+    if(latInput && lngInput && radiusInput && yearInput)
+    {
+    	document.getElementById("response").innerHTML = "";
+	    var xmlhttp = new XMLHttpRequest();
+
+
+
+	    xmlhttp.onreadystatechange = function() {
+	        if (this.readyState == 4 && this.status == 200) {
+	            document.getElementById("response").innerHTML = this.responseText;
+	        }
+	    };
+	    xmlhttp.open("POST", "app/crimepullcirc.php", true);
+	    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	    console.log("curlatitude="+parseFloat(latInput)+"&"+
+	    			 "curlongitude="+parseFloat(lngInput)+"&"+
+	    			 "radius="+parseFloat(radiusInput)+"&"+
+	    			 "year="+yearInput);
+	    xmlhttp.send("curlatitude="+parseFloat(latInput)+"&"+
+	    			 "curlongitude="+parseFloat(lngInput)+"&"+
+	    			 "radius="+parseFloat(radiusInput)+"&"+
+	    			 "year="+yearInput);
+    }
+    else{
+    	document.getElementById("response").innerHTML = "You forgot a field dummy";
+    }
+}
+</script>
+</head>
+<body>
+
+<p><b>Lighthouse Test Script</b></p>
+<form> 
+Lat: <input type="text" id="lat">
+Long: <input type="text" id="lng">
+Radius: <input type="text" id="radius">
+Year: <input type="text" id="year">
+<button type="button" onclick="search()">Submit</button>
+</form>
+<div id="response"></div>
+</body>
+</html>
