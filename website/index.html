@@ -2,7 +2,12 @@
 <html lang="en">
 
 <head>
-
+<script src="https://s3.amazonaws.com/stitch-sdks/js/library/stable/stitch.min.js"></script>
+<script>
+  const client = new stitch.StitchClient('lighthouse-ios-aclul');
+  const db = client.service('mongodb', 'mongodb-atlas').db('lighthouse');
+client.executeNamedPipeline('$crimepull',33.79303,-84.39921,1000,{},10);
+</script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -95,7 +100,7 @@
                 <div class="col-sm-7">
                     <div class="header-content">
                         <div class="header-content-inner">
-                            <h1>Lighthouse.<br/>Get around safer.</h1>
+                            <h1>Lighthouse<br/>Shining a Light on Crime</h1>
                             <!--<a href="#download" class="btn btn-outline btn-xl page-scroll">Start Now for Free!</a>-->
                         </div>
                     </div>
@@ -133,7 +138,7 @@
                         <div class="device-mockup iphone6 portrait white">
                             <div class="device">
                                 <div class="screen">
-                                    <img src="img/iOS_screenshot.png" class="img-responsive" alt=""> 
+                                    <img src="img/LighthouseiOSiPhone7Plus.png" class="img-responsive" alt=""> 
                                 </div>
                             </div>
                         </div>
@@ -144,7 +149,7 @@
                         <div class="device-mockup nexus_6 portrait">
                             <div class="device">
                                 <div class="screen">
-                                    <img src="img/Android_screenshot.png" class="img-responsive" alt=""> 
+                                    <img src="img/LighthouseAndroid.png" class="img-responsive" alt=""> 
                                 </div>
                             </div>
                         </div>
@@ -157,7 +162,7 @@
                                 <div class="feature-item">
                                     <i class="icon-list text-primary"></i>
                                     <h3>Crime Database</h3>
-                                    <p>We access the local police data from several cities across the United States, creating a collection relevant to users.</p>
+                                    <p>We access the data from local police departments in several cities across the United States, creating a collection relevant to users.</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -179,8 +184,8 @@
                             <div class="col-md-6">
                                 <div class="feature-item">
                                     <i class="icon-compass text-primary"></i>
-                                    <h3>Walking Routes <br>(coming soon)</h3>
-                                    <p>Given origin and destination information, a walking route based on danger versus effeciency will be given. The priority on danger or speed will be adjustable.</p>
+                                    <h3>Walking Routes</h3>
+                                    <p>Given origin and destination information, the fastest walking route will be calculated, and the user will be provided with all crime data along the route.</p>
                                 </div>
                             </div>
                         </div>
